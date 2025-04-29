@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{%block content%}
+<div class="row mb-4">
+    <div class="col text-end">
+        <a href="{% url 'post-create' %}" class="btn icon">
+            <span class="material-symbols-outlined">add</span>
+        </a>
+    </div>
+</div>
+<div class="row mb-4 justify-content-center">
+    <div class="col text-center">
+        <h1 class="display-6 logo">Common Era</h1>
+    </div>
+</div>
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-6 mb-4  justify-content-between">
+        <div class="content-section d-flex flex-column justify-content-between h-100 w-100 p-3">
+            
+                <h2>
+                    <a href="{% url 'post-detail' post.pk %}">{{post.title}}</a>
+                </h2>
+                <p>{{post.content}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small>{{post.createdAt}}</small>
+                    <div class="btn-group">
+                        <a href="{% url 'post-update' post.pk %}" class="btn icon">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                        
+                        <a href="{% url 'post-delete' post.pk %}" class="btn icon">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                    </div>
+                </div>
+           
+        </div>
+    </div>
+    
+    {%endfor%}
+
+</div>
+
+{%endblock%}
